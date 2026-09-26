@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "title": "Oprecht — Rencontres sincères pour une relation sérieuse",
+    "description": "Des suggestions ciblées via un quiz de valeurs. Lancement Flandre d'abord, disponible en NL, FR et EN."
+  },
+  "brand": {
+    "name": "Oprecht",
+    "tagline": "Rencontres sincères"
+  },
+  "nav": {
+    "skipToContent": "Aller au contenu",
+    "home": "Accueil",
+    "youAndDating": "Vous & les rencontres",
+    "method": "Notre méthode",
+    "safety": "Sécurité",
+    "service": "Service",
+    "prices": "Tarifs",
+    "faq": "FAQ",
+    "about": "À propos",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "logout": "Déconnexion",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "locale": "Langue"
+  },
+  "footer": {
+    "about": "À propos",
+    "terms": "Conditions",
+    "privacy": "Confidentialité",
+    "help": "Aide & contact",
+    "prices": "Tarifs",
+    "safety": "Conseils de sécurité",
+    "cookies": "Cookies",
+    "rights": "© {year} Oprecht. Tous droits réservés.",
+    "note": "Soft launch d'abord en Flandre. Relations sérieuses uniquement."
+  },
+  "cookie": {
+    "title": "Cookies",
+    "body": "Nous utilisons des cookies essentiels pour la session et la langue. Les analytics optionnels restent désactivés jusqu'à votre accord.",
+    "acceptEssential": "Essentiels seulement",
+    "acceptAll": "Autoriser l'optionnel",
+    "more": "Politique cookies"
+  },
+  "home": {
+    "eyebrow": "Des rencontres intentionnelles",
+    "title": "Des rencontres sincères pour une relation sérieuse",
+    "lead": "Oprecht propose une personne compatible à la fois — selon vos valeurs, pas un défilement sans fin.",
+    "ctaRegister": "Créer un compte gratuit",
+    "ctaMethod": "Comment ça marche",
+    "points": {
+      "p1": "Quiz de valeurs → suggestions ciblées",
+      "p2": "Basic gratuit pour explorer ; Premium débloque messagerie et photos nettes",
+      "p3": "Conçu pour la Belgique — néerlandais, français et anglais"
+    }
+  },
+  "tour": {
+    "youAndDating": {
+      "title": "Vous & les rencontres",
+      "lead": "Si vous cherchez une relation durable — pas une distraction — vous êtes au bon endroit.",
+      "body": "Oprecht s'adresse aux célibataires qui veulent de la clarté : qui vous êtes, ce que vous valorisez et ce que vous attendez d'un partenaire. Nous restons sélectifs pour que chaque suggestion mérite votre attention.",
+      "draft": false
+    },
+    "method": {
+      "title": "Notre méthode",
+      "lead": "Un quiz de valeurs et préférences guide nos présentations — un profil à la fois.",
+      "body": "Après environ 30–50 questions, nous calculons la compatibilité et proposons des suggestions par pertinence. Vous Likez ou Passez. Un intérêt mutuel ouvre la messagerie Premium. Pas d'annuaire ouvert, pas de navigation aléatoire.",
+      "draft": false
+    },
+    "safety": {
+      "title": "Sécurité",
+      "lead": "La confiance fait partie du produit — pas un détail.",
+      "body": "Vous devez avoir 18 ans ou plus. Signaler et bloquer arriveront avec le matching. Nous modérons photos et signalements. Rencontrez-vous en public, ne partagez jamais d'informations financières et écoutez votre instinct. Voir Conseils de sécurité.",
+      "draft": false
+    },
+    "service": {
+      "title": "Service",
+      "lead": "Un support humain pour un produit belge.",
+      "body": "Questions sur le compte, l'abonnement ou la sécurité ? Contactez-nous via Aide & contact. Pendant le soft launch, réponse sous deux jours ouvrables.",
+      "draft": false
+    },
+    "prices": {
+      "title": "Tarifs",
+      "lead": "Commencez gratuitement. Passez à Premium quand vous voulez discuter.",
+      "intro": "Basic permet de s'inscrire, faire le quiz, créer un profil et Like/Pass sur des cartes floutées (max. 10/jour). Premium débloque photos nettes, messagerie illimitée, qui vous a liké, visiteurs, classement par rayon et suggestions continues.",
+      "plansTitle": "Abonnements Premium",
+      "plan1": "1 mois",
+      "plan3": "3 mois",
+      "plan12": "12 mois",
+      "price1": "€12,99",
+      "price3": "€29,99",
+      "price12": "€79,99",
+      "matrixTitle": "Ce que vous obtenez",
+      "colFeature": "Fonction",
+      "colBasic": "Basic",
+      "colPremium": "Premium",
+      "rows": {
+        "quiz": "Quiz & profil",
+        "suggestions": "Cartes de suggestion",
+        "likePass": "Like / Pass",
+        "daily": "Volume quotidien",
+        "photos": "Photos nettes des autres",
+        "messaging": "Envoyer & recevoir des messages",
+        "likes": "Qui m'a liké",
+        "visitors": "Visiteurs du profil",
+        "radius": "Classement par rayon / zone"
+      },
+      "yes": "Oui",
+      "blurred": "Photos floutées",
+      "clear": "Photos nettes",
+      "capped": "Max. 10 / jour",
+      "continuous": "Continu",
+      "no": "Non (upgrade)",
+      "note": "Paiements via Mollie dans une milestone ultérieure. Prix en EUR TTC le cas échéant.",
+      "draft": false
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": {
+        "q1": "Oprecht est-il gratuit ?",
+        "a1": "Oui pour commencer : Basic inclut inscription, quiz, profil et Like/Pass quotidien sur cartes floutées. Messagerie et photos nettes nécessitent Premium.",
+        "q2": "Où lancez-vous ?",
+        "a2": "Soft launch d'abord en Flandre (NL), avec FR et EN prêts dans le produit.",
+        "q3": "Comment marchent les matchs ?",
+        "a3": "Vous répondez à un quiz de valeurs. Nous suggérons une personne à la fois selon la compatibilité — pas de recherche ouverte de membres.",
+        "q4": "Faut-il avoir 18 ans ?",
+        "a4": "Oui. Nous demandons la date de naissance et refusons les inscriptions mineures.",
+        "q5": "Quelles langues ?",
+        "a5": "Néerlandais, français et anglais. Changez quand vous voulez via le sélecteur."
+      },
+      "draft": false
+    }
+  },
+  "legal": {
+    "about": {
+      "title": "À propos d'Oprecht",
+      "body": "Oprecht signifie sincère. Nous construisons un service d'abonnement pour célibataires cherchant une relation sérieuse en Belgique. Suggestions ciblées via un quiz de valeurs — pas de fatigue du swipe."
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "version": "Version {version}",
+      "body": "Ces conditions régissent Oprecht. Vous devez avoir 18+, fournir des informations exactes et respecter les autres membres. Renouvellement Premium et résiliation seront finalisés avant le lancement payant. content:draft — relecture juridique en attente."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "version": "Version {version}",
+      "body": "Nous traitons les données de compte, quiz et profil pour le matching. Le consentement conditions/privacy est journalisé à l'inscription. Les e-mails marketing sont opt-in (désactivés par défaut). Export ou suppression dès que les endpoints RGPD seront disponibles. content:draft — revue DPO en attente."
+    },
+    "cookiesPage": {
+      "title": "Politique cookies",
+      "version": "Version {version}",
+      "body": "Cookies essentiels : session et langue. Analytics optionnels désactivés jusqu'au consentement. Nous ne vendons pas de données personnelles. content:draft"
+    },
+    "help": {
+      "title": "Aide & contact",
+      "body": "E-mail support@oprecht.example (placeholder). Soft launch : réponse sous deux jours ouvrables. En cas d'urgence sécurité, utilisez les outils de signalement lorsqu'ils seront disponibles et contactez les autorités locales si vous êtes en danger."
+    },
+    "safetyTips": {
+      "title": "Conseils de sécurité",
+      "items": {
+        "i1": "Rencontrez-vous dans des lieux publics pour les premiers rendez-vous.",
+        "i2": "N'envoyez jamais d'argent ni de coordonnées bancaires.",
+        "i3": "Gardez votre adresse privée jusqu'à ce que vous fassiez confiance.",
+        "i4": "Signalez et bloquez si quelqu'un vous met mal à l'aise.",
+        "i5": "Prévenez un ami de votre rendez-vous lorsque vous rencontrez quelqu'un de nouveau."
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "forgot": "Mot de passe oublié ?",
+      "noAccount": "Pas encore de compte ?",
+      "registerLink": "S'inscrire"
+    },
+    "register": {
+      "title": "Créer votre compte",
+      "ageTitle": "Confirmez que vous avez 18 ans ou plus",
+      "ageLead": "Indiquez votre date de naissance. Les comptes mineurs sont refusés.",
+      "dob": "Date de naissance",
+      "continue": "Continuer",
+      "underage": "Vous devez avoir au moins 18 ans.",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "passwordHint": "Au moins 8 caractères, une lettre, et un chiffre ou caractère spécial.",
+      "gender": "Je suis",
+      "genderSought": "Je cherche",
+      "genderWoman": "Femme",
+      "genderMan": "Homme",
+      "genderOther": "Autre",
+      "soughtWomen": "Femmes",
+      "soughtMen": "Hommes",
+      "soughtEveryone": "Tout le monde",
+      "terms": "J'accepte les Conditions",
+      "privacy": "J'accepte la Politique de confidentialité",
+      "marketing": "Recevoir occasionnellement des conseils et offres (optionnel)",
+      "submit": "Créer le compte",
+      "haveAccount": "Déjà inscrit ?",
+      "loginLink": "Connexion",
+      "success": "Compte créé. Vérifiez votre e-mail (dev : jeton dans les logs serveur)."
+    },
+    "forgot": {
+      "title": "Mot de passe oublié",
+      "lead": "Entrez votre e-mail. Si un compte existe, nous envoyons un lien de réinitialisation.",
+      "submit": "Envoyer le lien",
+      "done": "Si cet e-mail est enregistré, un lien a été envoyé (dev : jeton dans les logs serveur)."
+    },
+    "reset": {
+      "title": "Choisir un nouveau mot de passe",
+      "password": "Nouveau mot de passe",
+      "submit": "Mettre à jour",
+      "done": "Mot de passe mis à jour. Vous pouvez vous connecter.",
+      "invalid": "Ce lien de réinitialisation est invalide ou expiré."
+    },
+    "verify": {
+      "title": "Vérifier l'e-mail",
+      "lead": "Collez le jeton de vérification de votre e-mail (logs dev tant que le mailer est un stub).",
+      "token": "Jeton de vérification",
+      "submit": "Vérifier",
+      "done": "E-mail vérifié. Merci.",
+      "invalid": "Ce lien de vérification est invalide ou expiré."
+    },
+    "errors": {
+      "generic": "Une erreur s'est produite. Réessayez.",
+      "invalidCredentials": "E-mail ou mot de passe invalide.",
+      "emailTaken": "Cet e-mail est déjà enregistré.",
+      "underage": "Vous devez avoir au moins 18 ans.",
+      "validation": "Vérifiez le formulaire et réessayez.",
+      "rateLimited": "Trop de tentatives. Patientez un instant."
+    }
+  },
+  "common": {
+    "loading": "Chargement…",
+    "backHome": "Retour à l'accueil",
+    "draftBadge": "content:draft"
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "title": "Oprecht — Eerlijk daten voor een serieuze relatie",
+    "description": "Gecureerde matches via een waardenvragenlijst. Flanders-first, beschikbaar in NL, FR en EN."
+  },
+  "brand": {
+    "name": "Oprecht",
+    "tagline": "Eerlijk daten"
+  },
+  "nav": {
+    "skipToContent": "Ga naar inhoud",
+    "home": "Home",
+    "youAndDating": "Jij & daten",
+    "method": "Onze methode",
+    "safety": "Veiligheid",
+    "service": "Service",
+    "prices": "Prijzen",
+    "faq": "FAQ",
+    "about": "Over ons",
+    "login": "Inloggen",
+    "register": "Registreren",
+    "logout": "Uitloggen",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "locale": "Taal"
+  },
+  "footer": {
+    "about": "Over ons",
+    "terms": "Voorwaarden",
+    "privacy": "Privacy",
+    "help": "Help & contact",
+    "prices": "Prijzen",
+    "safety": "Veiligheidstips",
+    "cookies": "Cookies",
+    "rights": "© {year} Oprecht. Alle rechten voorbehouden.",
+    "note": "Soft launch eerst in Vlaanderen. Alleen serieuze relaties."
+  },
+  "cookie": {
+    "title": "Cookies",
+    "body": "We gebruiken essentiële cookies om je sessie en taal te bewaren. Optionele analytics blijven uit tot je toestemt.",
+    "acceptEssential": "Alleen essentieel",
+    "acceptAll": "Optioneel toestaan",
+    "more": "Cookiebeleid"
+  },
+  "home": {
+    "eyebrow": "Daten met intentie",
+    "title": "Eerlijk daten voor een serieuze relatie",
+    "lead": "Oprecht stelt één compatibel iemand tegelijk voor — op basis van je waarden, niet eindeloos swipen.",
+    "ctaRegister": "Gratis account maken",
+    "ctaMethod": "Hoe matching werkt",
+    "points": {
+      "p1": "Waardenvragenlijst → gecureerde suggesties",
+      "p2": "Basic is gratis om te verkennen; Premium ontgrendelt berichten en duidelijke foto's",
+      "p3": "Voor België — Nederlands, Frans en Engels"
+    }
+  },
+  "tour": {
+    "youAndDating": {
+      "title": "Jij & daten",
+      "lead": "Zoek je een duurzame relatie — geen weekendafleiding — dan ben je hier goed.",
+      "body": "Oprecht is voor singles die duidelijkheid willen: wie je bent, wat je waardeert en wat je zoekt in een partner. We houden het selectief zodat elke suggestie je aandacht verdient.",
+      "draft": false
+    },
+    "method": {
+      "title": "Onze methode",
+      "lead": "Een waarden- en voorkeurenvragenlijst stuurt wie we voorstellen — één profiel tegelijk.",
+      "body": "Na ongeveer 30–50 vragen scoren we compatibiliteit en tonen we suggesties op volgorde van fit. Jij Liket of Past. Wederzijdse interesse opent Premium-berichten. Geen open directory, geen willekeurig browsen.",
+      "draft": false
+    },
+    "safety": {
+      "title": "Veiligheid",
+      "lead": "Vertrouwen hoort bij het product — geen bijzaak.",
+      "body": "Je moet 18+ zijn. Rapport- en blokkeertools volgen met matching. We modereren foto's en meldingen. Spreek af op publieke plaatsen, deel nooit financiële gegevens en volg je gevoel. Zie Veiligheidstips voor praktische raad.",
+      "draft": false
+    },
+    "service": {
+      "title": "Service",
+      "lead": "Menselijke support voor een Belgisch product.",
+      "body": "Vragen over je account, lidmaatschap of veiligheid? Bereik ons via Help & contact. Tijdens soft launch antwoorden we binnen twee werkdagen.",
+      "draft": false
+    },
+    "prices": {
+      "title": "Prijzen",
+      "lead": "Begin gratis. Upgrade wanneer je klaar bent om te praten.",
+      "intro": "Basic laat je registreren, de quiz doen, een profiel bouwen en Like/Pass op vervaagde suggesties (max. 10 per dag). Premium ontgrendelt duidelijke foto's, onbeperkte berichten, wie jou likete, bezoekers, straalranking en doorlopende suggesties.",
+      "plansTitle": "Premium-abonnementen",
+      "plan1": "1 maand",
+      "plan3": "3 maanden",
+      "plan12": "12 maanden",
+      "price1": "€12,99",
+      "price3": "€29,99",
+      "price12": "€79,99",
+      "matrixTitle": "Wat je krijgt",
+      "colFeature": "Functie",
+      "colBasic": "Basic",
+      "colPremium": "Premium",
+      "rows": {
+        "quiz": "Quiz & profiel",
+        "suggestions": "Suggestiekaarten",
+        "likePass": "Like / Pass",
+        "daily": "Dagelijkse suggesties",
+        "photos": "Duidelijke foto's van anderen",
+        "messaging": "Berichten sturen & ontvangen",
+        "likes": "Wie mij likete",
+        "visitors": "Profielbezoekers",
+        "radius": "Straal / regio-ranking"
+      },
+      "yes": "Ja",
+      "blurred": "Vervaagde foto's",
+      "clear": "Duidelijke foto's",
+      "capped": "Max. 10 / dag",
+      "continuous": "Doorlopend",
+      "no": "Nee (upgrade)",
+      "note": "Betalingen via Mollie in een latere milestone. Prijzen in EUR incl. btw waar van toepassing.",
+      "draft": false
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": {
+        "q1": "Is Oprecht gratis?",
+        "a1": "Ja om te starten: Basic omvat registratie, de waardenvragenlijst, profiel en dagelijkse Like/Pass op vervaagde kaarten. Berichten en duidelijke foto's vragen Premium.",
+        "q2": "Waar lanceren jullie?",
+        "a2": "Soft launch eerst in Vlaanderen (NL), met FR en EN klaar in het product.",
+        "q3": "Hoe werken matches?",
+        "a3": "Je vult een waardenvragenlijst in. Wij stellen één iemand tegelijk voor op compatibiliteit — geen open ledenzoektocht.",
+        "q4": "Moet ik 18 zijn?",
+        "a4": "Ja. We vragen je geboortedatum en weigeren registraties onder 18.",
+        "q5": "Welke talen?",
+        "a5": "Nederlands, Frans en Engels. Wissel wanneer je wilt via de taalkiezer."
+      },
+      "draft": false
+    }
+  },
+  "legal": {
+    "about": {
+      "title": "Over Oprecht",
+      "body": "Oprecht betekent eerlijk. We bouwen een abonnementsdienst voor singles die een serieuze relatie zoeken in België. Gecureerde suggesties via een waardenvragenlijst — geen swipe-vermoeidheid."
+    },
+    "terms": {
+      "title": "Gebruiksvoorwaarden",
+      "version": "Versie {version}",
+      "body": "Deze voorwaarden gelden voor Oprecht. Je moet 18+ zijn, juiste gegevens opgeven en andere leden respecteren. Details over Premium-verlenging en opzegging volgen vóór betaalde launch. content:draft — juridische review volgt."
+    },
+    "privacy": {
+      "title": "Privacybeleid",
+      "version": "Versie {version}",
+      "body": "We verwerken account-, quiz- en profielgegevens om matching te laten werken. Toestemming voor voorwaarden en privacy wordt bij registratie gelogd. Marketingmails zijn opt-in (standaard uit). Export of verwijdering volgt wanneer GDPR-endpoints live gaan. content:draft — DPO-review volgt."
+    },
+    "cookiesPage": {
+      "title": "Cookiebeleid",
+      "version": "Versie {version}",
+      "body": "Essentiële cookies: sessie en taal. Optionele analytics blijven uit tot je toestemt. We verkopen geen persoonsgegevens. content:draft"
+    },
+    "help": {
+      "title": "Help & contact",
+      "body": "E-mail support@oprecht.example (placeholder). Soft-launch antwoord binnen twee werkdagen. Bij urgente veiligheidsproblemen: gebruik rapportagetools wanneer beschikbaar en bel lokale hulpdiensten als je in gevaar bent."
+    },
+    "safetyTips": {
+      "title": "Veiligheidstips",
+      "items": {
+        "i1": "Spreek af op publieke plaatsen voor de eerste dates.",
+        "i2": "Stuur nooit geld en deel geen bankgegevens.",
+        "i3": "Houd je adres privé tot je iemand vertrouwt.",
+        "i4": "Gebruik rapporteren en blokkeren als iemand je ongemakkelijk maakt.",
+        "i5": "Vertel een vriend waar je naartoe gaat als je iemand nieuw ontmoet."
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Inloggen",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "submit": "Inloggen",
+      "forgot": "Wachtwoord vergeten?",
+      "noAccount": "Nog geen account?",
+      "registerLink": "Registreren"
+    },
+    "register": {
+      "title": "Maak je account",
+      "ageTitle": "Bevestig dat je 18+ bent",
+      "ageLead": "Vul je geboortedatum in. Accounts onder 18 zijn niet toegelaten.",
+      "dob": "Geboortedatum",
+      "continue": "Doorgaan",
+      "underage": "Je moet minstens 18 jaar oud zijn.",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "passwordHint": "Minstens 8 tekens, een letter, en een cijfer of leesteken.",
+      "gender": "Ik ben",
+      "genderSought": "Ik zoek",
+      "genderWoman": "Vrouw",
+      "genderMan": "Man",
+      "genderOther": "Anders",
+      "soughtWomen": "Vrouwen",
+      "soughtMen": "Mannen",
+      "soughtEveryone": "Iedereen",
+      "terms": "Ik ga akkoord met de Voorwaarden",
+      "privacy": "Ik ga akkoord met het Privacybeleid",
+      "marketing": "Stuur me af en toe tips en aanbiedingen (optioneel)",
+      "submit": "Account maken",
+      "haveAccount": "Al geregistreerd?",
+      "loginLink": "Inloggen",
+      "success": "Account aangemaakt. Bevestig je e-mail (dev: token in serverlogs)."
+    },
+    "forgot": {
+      "title": "Wachtwoord vergeten",
+      "lead": "Vul je e-mail in. Als er een account bestaat, sturen we een resetlink.",
+      "submit": "Resetlink sturen",
+      "done": "Als dat e-mailadres bekend is, is er een resetlink gestuurd (dev: token in serverlogs)."
+    },
+    "reset": {
+      "title": "Kies een nieuw wachtwoord",
+      "password": "Nieuw wachtwoord",
+      "submit": "Wachtwoord bijwerken",
+      "done": "Wachtwoord bijgewerkt. Je kunt inloggen.",
+      "invalid": "Deze resetlink is ongeldig of verlopen."
+    },
+    "verify": {
+      "title": "E-mail bevestigen",
+      "lead": "Plak de verificatietoken uit je e-mail (dev-logs zolang de mailer een stub is).",
+      "token": "Verificatietoken",
+      "submit": "Bevestigen",
+      "done": "E-mail bevestigd. Dank je.",
+      "invalid": "Deze verificatielink is ongeldig of verlopen."
+    },
+    "errors": {
+      "generic": "Er ging iets mis. Probeer opnieuw.",
+      "invalidCredentials": "Ongeldig e-mailadres of wachtwoord.",
+      "emailTaken": "Dat e-mailadres is al geregistreerd.",
+      "underage": "Je moet minstens 18 jaar oud zijn.",
+      "validation": "Controleer het formulier en probeer opnieuw.",
+      "rateLimited": "Te veel pogingen. Wacht even."
+    }
+  },
+  "common": {
+    "loading": "Laden…",
+    "backHome": "Terug naar home",
+    "draftBadge": "content:draft"
+  }
+}

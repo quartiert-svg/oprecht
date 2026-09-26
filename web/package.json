@@ -9,9 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "^15.5.7",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.12",
+    "next": "^15.5.26",
+    "next-intl": "^4.14.7",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -20,7 +24,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "^15.5.26",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "title": "Oprecht — Honest dating for a serious relationship",
+    "description": "Curated matches from a values quiz. Flanders-first, available in Dutch, French and English."
+  },
+  "brand": {
+    "name": "Oprecht",
+    "tagline": "Honest dating"
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "youAndDating": "You & dating",
+    "method": "Our method",
+    "safety": "Safety",
+    "service": "Service",
+    "prices": "Prices",
+    "faq": "FAQ",
+    "about": "About",
+    "login": "Log in",
+    "register": "Register",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "locale": "Language"
+  },
+  "footer": {
+    "about": "About",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "help": "Help & contact",
+    "prices": "Prices",
+    "safety": "Safety tips",
+    "cookies": "Cookies",
+    "rights": "© {year} Oprecht. All rights reserved.",
+    "note": "Soft launch Flanders-first. Serious relationships only."
+  },
+  "cookie": {
+    "title": "Cookies",
+    "body": "We use essential cookies to keep you signed in and remember your language. Optional analytics stay off until you allow them.",
+    "acceptEssential": "Essential only",
+    "acceptAll": "Allow optional",
+    "more": "Cookie policy"
+  },
+  "home": {
+    "eyebrow": "Dating with intention",
+    "title": "Honest dating for a serious relationship",
+    "lead": "Oprecht suggests one compatible person at a time — based on your values, not endless swiping.",
+    "ctaRegister": "Create free account",
+    "ctaMethod": "How matching works",
+    "points": {
+      "p1": "Values quiz → curated suggestions",
+      "p2": "Basic is free to explore; Premium unlocks messaging and clear photos",
+      "p3": "Built for Belgium — Dutch, French and English"
+    }
+  },
+  "tour": {
+    "youAndDating": {
+      "title": "You & dating",
+      "lead": "If you are looking for a lasting relationship — not a weekend distraction — you are in the right place.",
+      "body": "Oprecht is for singles who want clarity: who you are, what you value, and what you seek in a partner. We keep the experience selective so every suggestion deserves your attention.",
+      "draft": false
+    },
+    "method": {
+      "title": "Our method",
+      "lead": "A values and preferences quiz guides who we introduce — one profile at a time.",
+      "body": "After you answer roughly 30–50 questions, we score compatibility and surface suggestions in order of fit. You Like or Pass. Mutual interest opens the door to Premium messaging. No open directory, no random browse.",
+      "draft": false
+    },
+    "safety": {
+      "title": "Safety",
+      "lead": "Trust is part of the product — not an afterthought.",
+      "body": "You must be 18+. Report and block tools are available once matching ships. We moderate photos and reports. Meet in public places, never share financial details, and trust your instincts. See Safety tips for practical guidance.",
+      "draft": false
+    },
+    "service": {
+      "title": "Service",
+      "lead": "Human support for a Belgian product.",
+      "body": "Questions about your account, membership or safety? Reach us via Help & contact. We aim to reply within two business days during soft launch.",
+      "draft": false
+    },
+    "prices": {
+      "title": "Prices",
+      "lead": "Start free. Upgrade when you are ready to talk.",
+      "intro": "Basic lets you register, complete the quiz, build a profile, and Like or Pass on blurred suggestion cards (up to 10 per day). Premium unlocks clear photos, unlimited messaging, who liked you, visitors, radius ranking and continuous suggestions.",
+      "plansTitle": "Premium plans",
+      "plan1": "1 month",
+      "plan3": "3 months",
+      "plan12": "12 months",
+      "price1": "€12.99",
+      "price3": "€29.99",
+      "price12": "€79.99",
+      "matrixTitle": "What you get",
+      "colFeature": "Feature",
+      "colBasic": "Basic",
+      "colPremium": "Premium",
+      "rows": {
+        "quiz": "Quiz & profile",
+        "suggestions": "Suggestion cards",
+        "likePass": "Like / Pass",
+        "daily": "Daily suggestion volume",
+        "photos": "Clear photos of others",
+        "messaging": "Send & receive messages",
+        "likes": "Who liked me",
+        "visitors": "Profile visitors",
+        "radius": "Radius / area ranking"
+      },
+      "yes": "Yes",
+      "blurred": "Blurred photos",
+      "clear": "Clear photos",
+      "capped": "Up to 10 / day",
+      "continuous": "Continuous",
+      "no": "No (upgrade)",
+      "note": "Payments via Mollie in a later milestone. Prices shown in EUR incl. VAT where applicable.",
+      "draft": false
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": {
+        "q1": "Is Oprecht free?",
+        "a1": "Yes to start: Basic includes registration, the values quiz, profile and daily Like/Pass on blurred cards. Messaging and clear photos need Premium.",
+        "q2": "Where do you launch?",
+        "a2": "Soft launch Flanders-first (Dutch), with French and English ready in the product.",
+        "q3": "How do matches work?",
+        "a3": "You complete a values quiz. We suggest one person at a time based on compatibility — not an open member search.",
+        "q4": "Do I have to be 18?",
+        "a4": "Yes. We ask for your date of birth and reject under-18 registrations.",
+        "q5": "Which languages?",
+        "a5": "Dutch, French and English. Switch anytime with the language control."
+      },
+      "draft": false
+    }
+  },
+  "legal": {
+    "about": {
+      "title": "About Oprecht",
+      "body": "Oprecht means honest. We build a subscription dating service for singles seeking a serious relationship in Belgium. Curated suggestions from a values quiz — not swipe fatigue."
+    },
+    "terms": {
+      "title": "Terms of use",
+      "version": "Version {version}",
+      "body": "These terms govern use of Oprecht. You must be 18+, provide accurate information, and treat other members with respect. Premium renewals and cancellation details will be finalised before paid launch. content:draft — legal counsel review pending."
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "version": "Version {version}",
+      "body": "We process account, quiz and profile data to operate matching. Consent for terms and privacy is logged at registration. Marketing emails are opt-in (default off). You may request export or deletion once GDPR endpoints ship. content:draft — DPO review pending."
+    },
+    "cookiesPage": {
+      "title": "Cookie policy",
+      "version": "Version {version}",
+      "body": "Essential cookies: session and locale. Optional analytics cookies stay disabled until you consent. We do not sell personal data. content:draft"
+    },
+    "help": {
+      "title": "Help & contact",
+      "body": "Email support@oprecht.example (placeholder). Soft-launch response within two business days. For urgent safety issues, use report tools when available and contact local authorities if you are in danger."
+    },
+    "safetyTips": {
+      "title": "Safety tips",
+      "items": {
+        "i1": "Meet in public places for the first meetings.",
+        "i2": "Never send money or share banking details.",
+        "i3": "Keep personal addresses private until you trust someone.",
+        "i4": "Use report and block if someone makes you uncomfortable.",
+        "i5": "Tell a friend where you are going when you meet someone new."
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "forgot": "Forgot password?",
+      "noAccount": "No account yet?",
+      "registerLink": "Register"
+    },
+    "register": {
+      "title": "Create your account",
+      "ageTitle": "Confirm you are 18+",
+      "ageLead": "Enter your date of birth. Under-18 accounts are not allowed.",
+      "dob": "Date of birth",
+      "continue": "Continue",
+      "underage": "You must be at least 18 years old.",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 8 characters, a letter, and a digit or special character.",
+      "gender": "I am",
+      "genderSought": "Looking for",
+      "genderWoman": "Woman",
+      "genderMan": "Man",
+      "genderOther": "Other",
+      "soughtWomen": "Women",
+      "soughtMen": "Men",
+      "soughtEveryone": "Everyone",
+      "terms": "I agree to the Terms",
+      "privacy": "I agree to the Privacy policy",
+      "marketing": "Send me occasional tips and offers (optional)",
+      "submit": "Create account",
+      "haveAccount": "Already registered?",
+      "loginLink": "Log in",
+      "success": "Account created. Check your email to verify (dev: token in server logs)."
+    },
+    "forgot": {
+      "title": "Forgot password",
+      "lead": "Enter your email. If an account exists, we send a reset link.",
+      "submit": "Send reset link",
+      "done": "If that email is registered, a reset link was sent (dev: token in server logs)."
+    },
+    "reset": {
+      "title": "Choose a new password",
+      "password": "New password",
+      "submit": "Update password",
+      "done": "Password updated. You can log in.",
+      "invalid": "This reset link is invalid or expired."
+    },
+    "verify": {
+      "title": "Verify email",
+      "lead": "Paste the verification token from your email (dev logs while mailer is stubbed).",
+      "token": "Verification token",
+      "submit": "Verify",
+      "done": "Email verified. Thank you.",
+      "invalid": "This verification link is invalid or expired."
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "invalidCredentials": "Invalid email or password.",
+      "emailTaken": "That email is already registered.",
+      "underage": "You must be at least 18 years old.",
+      "validation": "Please check the form and try again.",
+      "rateLimited": "Too many attempts. Please wait a moment."
+    }
+  },
+  "common": {
+    "loading": "Loading…",
+    "backHome": "Back to home",
+    "draftBadge": "content:draft"
+  }
+}

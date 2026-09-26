@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Oprecht web (Milestone 0)
 
-## Getting Started
+Next.js App Router app: marketing shell (nl/fr/en), age gate, auth API stubs, consent log, cookie notice, health endpoint.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js 20+
+- npm 10+
+
+## Run locally
 
 ```bash
+cd web
+npm install
+cp .env.example .env.local   # optional; defaults work for local demo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) — you will be redirected to `/nl` (default locale).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Useful URLs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Path | Purpose |
+| --- | --- |
+| `/nl`, `/fr`, `/en` | Localized home |
+| `/nl/register` | Age gate → register |
+| `/nl/login` | Login |
+| `/api/health` | Health check |
+| `/v1/auth/register` | OpenAPI-aligned rewrite → `/api/auth/register` |
+| `/api/me` | Current user (Bearer or session cookie) |
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev      # development server
+npm run build    # production build
+npm run start    # serve production build
+npm run lint     # ESLint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Auth storage (M0 demo)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+User accounts, consent rows, verify/reset tokens and sessions persist to `web/data/store.json` (gitignored).
 
-## Deploy on Vercel
+**Production needs a real database** (Postgres recommended) and a real mailer. Email verification and password-reset tokens are logged as structured JSON (`email_verify_stub` / `password_reset_stub`) instead of sending mail.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Set `AUTH_SECRET` (or `JWT_SECRET`) to a long random string before any shared deploy. Access tokens are HS256 JWTs (Bearer + httpOnly cookie).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Consent log
+
+On successful register we store: user id, terms version (`terms-1.0`), privacy version (`privacy-1.0`), marketing bool (default false), timestamp, hashed IP + user-agent.
+
+## Security notes (M0)
+
+- Passwords hashed with bcrypt (cost 12)
+- Age 18+ enforced client + server (`underage` error)
+- In-memory rate limits on register / login / forgot
+- HTTPS-only cookie `secure` flag in production
+- No Sentry yet — structured `console` JSON logs only
+
+## Out of scope (later milestones)
+
+Quiz, profile, matching, chat, Mollie billing.
