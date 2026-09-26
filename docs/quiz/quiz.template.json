@@ -1,0 +1,207 @@
+{
+  "version": "opreeth-values-v1",
+  "locale": "nl",
+  "itemCount": 35,
+  "notes": "Original Oprecht content only. Fill 30–50 items. Duplicate this file for fr and en with same item ids.",
+  "scoring": {
+    "model": "trait_weights_v1",
+    "traits": [
+      {
+        "id": "commitment",
+        "label_nl": "Commitment",
+        "label_fr": "Engagement",
+        "label_en": "Commitment",
+        "description": "Preference for long-term exclusivity vs keeping options open"
+      },
+      {
+        "id": "communication",
+        "label_nl": "Communicatie",
+        "label_fr": "Communication",
+        "label_en": "Communication",
+        "description": "Directness and emotional openness"
+      },
+      {
+        "id": "lifestyle",
+        "label_nl": "Levensstijl",
+        "label_fr": "Mode de vie",
+        "label_en": "Lifestyle",
+        "description": "Pace, social energy, routines"
+      },
+      {
+        "id": "family",
+        "label_nl": "Gezin",
+        "label_fr": "Famille",
+        "label_en": "Family",
+        "description": "Children, family role, future home"
+      },
+      {
+        "id": "values",
+        "label_nl": "Waarden",
+        "label_fr": "Valeurs",
+        "label_en": "Values",
+        "description": "Honesty, ambition, faith/politics sensitivity — keep light for v1"
+      }
+    ],
+    "compatibility": {
+      "method": "weighted_similarity",
+      "notes": "Higher score = closer trait vectors after hard filters (age, gender sought, area)."
+    }
+  },
+  "items": [
+    {
+      "id": "q001",
+      "traitId": "commitment",
+      "prompt": {
+        "nl": "Voor mij betekent een relatie vooral…",
+        "fr": "",
+        "en": ""
+      },
+      "answers": [
+        {
+          "id": "q001_a",
+          "label": { "nl": "Samen een toekomst opbouwen", "fr": "", "en": "" },
+          "weights": { "commitment": 2 }
+        },
+        {
+          "id": "q001_b",
+          "label": { "nl": "Genieten van het hier en nu, zonder haast", "fr": "", "en": "" },
+          "weights": { "commitment": 0 }
+        },
+        {
+          "id": "q001_c",
+          "label": { "nl": "Eerst kijken of het klikt, commitment komt later", "fr": "", "en": "" },
+          "weights": { "commitment": -1 }
+        },
+        {
+          "id": "q001_d",
+          "label": { "nl": "Ik wil het open houden", "fr": "", "en": "" },
+          "weights": { "commitment": -2 }
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "traitId": "communication",
+      "prompt": {
+        "nl": "Als er spanning is, doe ik meestal…",
+        "fr": "",
+        "en": ""
+      },
+      "answers": [
+        {
+          "id": "q002_a",
+          "label": { "nl": "Het meteen uitspreken", "fr": "", "en": "" },
+          "weights": { "communication": 2 }
+        },
+        {
+          "id": "q002_b",
+          "label": { "nl": "Eerst nadenken, dan praten", "fr": "", "en": "" },
+          "weights": { "communication": 1 }
+        },
+        {
+          "id": "q002_c",
+          "label": { "nl": "Afleiding zoeken tot het overwaait", "fr": "", "en": "" },
+          "weights": { "communication": -1 }
+        },
+        {
+          "id": "q002_d",
+          "label": { "nl": "Terugtrekken", "fr": "", "en": "" },
+          "weights": { "communication": -2 }
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "traitId": "lifestyle",
+      "prompt": {
+        "nl": "Een ideale avond ziet er zo uit…",
+        "fr": "",
+        "en": ""
+      },
+      "answers": [
+        {
+          "id": "q003_a",
+          "label": { "nl": "Rustig thuis", "fr": "", "en": "" },
+          "weights": { "lifestyle": -1 }
+        },
+        {
+          "id": "q003_b",
+          "label": { "nl": "Afspraak met vrienden", "fr": "", "en": "" },
+          "weights": { "lifestyle": 1 }
+        },
+        {
+          "id": "q003_c",
+          "label": { "nl": "Cultuur of uit eten", "fr": "", "en": "" },
+          "weights": { "lifestyle": 1 }
+        },
+        {
+          "id": "q003_d",
+          "label": { "nl": "Druk sociaal / uitgaan", "fr": "", "en": "" },
+          "weights": { "lifestyle": 2 }
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "traitId": "family",
+      "prompt": {
+        "nl": "Kinderen in de toekomst…",
+        "fr": "",
+        "en": ""
+      },
+      "answers": [
+        {
+          "id": "q004_a",
+          "label": { "nl": "Zeker willen", "fr": "", "en": "" },
+          "weights": { "family": 2 }
+        },
+        {
+          "id": "q004_b",
+          "label": { "nl": "Misschien, open", "fr": "", "en": "" },
+          "weights": { "family": 0 }
+        },
+        {
+          "id": "q004_c",
+          "label": { "nl": "Liever niet", "fr": "", "en": "" },
+          "weights": { "family": -2 }
+        },
+        {
+          "id": "q004_d",
+          "label": { "nl": "Heb al kinderen / situatiespecifiek", "fr": "", "en": "" },
+          "weights": { "family": 1 }
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "traitId": "values",
+      "prompt": {
+        "nl": "Eerlijkheid in daten betekent voor mij…",
+        "fr": "",
+        "en": ""
+      },
+      "answers": [
+        {
+          "id": "q005_a",
+          "label": { "nl": "Intenties meteen duidelijk maken", "fr": "", "en": "" },
+          "weights": { "values": 2, "commitment": 1 }
+        },
+        {
+          "id": "q005_b",
+          "label": { "nl": "Geleidelijk open worden", "fr": "", "en": "" },
+          "weights": { "values": 1 }
+        },
+        {
+          "id": "q005_c",
+          "label": { "nl": "Privacy houden tot er vertrouwen is", "fr": "", "en": "" },
+          "weights": { "values": 0 }
+        },
+        {
+          "id": "q005_d",
+          "label": { "nl": "Niet alles hoeft besproken", "fr": "", "en": "" },
+          "weights": { "values": -1 }
+        }
+      ]
+    }
+  ]
+}

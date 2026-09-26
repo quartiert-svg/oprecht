@@ -1,0 +1,1286 @@
+openapi: 3.0.3
+info:
+  title: Dating Web API
+  description: |
+    Shared API contract for the dating web product (and future native apps).
+    Freemium: Basic = quiz, profile, blurred suggestions, Like/Pass.
+    Premium = clear photos, messaging, likes/visitors, radius search, continuous suggestions.
+    Original brand/questionnaire only — no third-party dating IP.
+  version: 0.1.0
+  contact:
+    name: Dating Web product
+servers:
+  - url: https://api.example.com/v1
+    description: Production (placeholder)
+  - url: http://localhost:3000/v1
+    description: Local
+tags:
+  - name: Auth
+  - name: Me
+  - name: Quiz
+  - name: Profile
+  - name: SearchCriteria
+  - name: Suggestions
+  - name: Matches
+  - name: Social
+  - name: Messenger
+  - name: Billing
+  - name: GDPR
+  - name: Admin
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register with email and password
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Account created; email verification pending
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSession'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Email already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Log in
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password }
+      responses:
+        '200':
+          description: Authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Log out (invalidate refresh/session)
+      operationId: logout
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: Logged out
+  /auth/password/forgot:
+    post:
+      tags: [Auth]
+      summary: Request password reset email
+      operationId: passwordForgot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+      responses:
+        '204':
+          description: Always 204 to avoid email enumeration
+  /auth/password/reset:
+    post:
+      tags: [Auth]
+      summary: Reset password with token
+      operationId: passwordReset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token, password]
+              properties:
+                token: { type: string }
+                password: { type: string, format: password, minLength: 8 }
+      responses:
+        '204':
+          description: Password updated
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /auth/email/verify:
+    post:
+      tags: [Auth]
+      summary: Verify email with token
+      operationId: emailVerify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token: { type: string }
+      responses:
+        '204':
+          description: Email verified
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /me:
+    get:
+      tags: [Me]
+      summary: Current user summary
+      operationId: getMe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /quiz/current:
+    get:
+      tags: [Quiz]
+      summary: Current values-quiz definition (localized)
+      operationId: getCurrentQuiz
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/AcceptLanguage'
+      responses:
+        '200':
+          description: Quiz version and items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizDefinition'
+  /quiz/answers:
+    put:
+      tags: [Quiz]
+      summary: Upsert quiz progress
+      operationId: putQuizAnswers
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuizAnswersUpsert'
+      responses:
+        '200':
+          description: Progress saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizProgress'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /quiz/submit:
+    post:
+      tags: [Quiz]
+      summary: Finalize quiz and enqueue scoring
+      operationId: submitQuiz
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [quizVersion]
+              properties:
+                quizVersion: { type: string }
+      responses:
+        '202':
+          description: Accepted for scoring
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizProgress'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /me/profile:
+    get:
+      tags: [Profile]
+      summary: Own profile
+      operationId: getMyProfile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+    patch:
+      tags: [Profile]
+      summary: Update own profile
+      operationId: patchMyProfile
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfilePatch'
+      responses:
+        '200':
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+  /me/photos:
+    post:
+      tags: [Profile]
+      summary: Upload a photo
+      operationId: uploadPhoto
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Photo accepted (may be pending moderation)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+  /me/photos/{photoId}:
+    delete:
+      tags: [Profile]
+      summary: Delete own photo
+      operationId: deletePhoto
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PhotoId'
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /me/photos/{photoId}/primary:
+    post:
+      tags: [Profile]
+      summary: Set primary photo
+      operationId: setPrimaryPhoto
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PhotoId'
+      responses:
+        '200':
+          description: Primary updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+  /me/search-criteria:
+    get:
+      tags: [SearchCriteria]
+      summary: Get search criteria
+      operationId: getSearchCriteria
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCriteria'
+    put:
+      tags: [SearchCriteria]
+      summary: Replace search criteria
+      operationId: putSearchCriteria
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchCriteria'
+      responses:
+        '200':
+          description: Saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCriteria'
+  /suggestions:
+    get:
+      tags: [Suggestions]
+      summary: Curated suggestion cards
+      operationId: listSuggestions
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 20, default: 10 }
+      responses:
+        '200':
+          description: Page of suggestions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionPage'
+        '403':
+          description: Onboarding incomplete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /suggestions/{userId}/like:
+    post:
+      tags: [Suggestions]
+      summary: Like a suggestion
+      operationId: likeSuggestion
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Like recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LikeResult'
+        '409':
+          description: Already acted on this user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /suggestions/{userId}/pass:
+    post:
+      tags: [Suggestions]
+      summary: Pass on a suggestion
+      operationId: passSuggestion
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Pass recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [userId, action]
+                properties:
+                  userId: { type: string, format: uuid }
+                  action: { type: string, enum: [pass] }
+  /matches:
+    get:
+      tags: [Matches]
+      summary: Mutual matches
+      operationId: listMatches
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Matches
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchPage'
+  /likes/received:
+    get:
+      tags: [Social]
+      summary: Who liked you (Premium)
+      operationId: listLikesReceived
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Received likes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialCardPage'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+  /visitors:
+    get:
+      tags: [Social]
+      summary: Who visited your profile (Premium)
+      operationId: listVisitors
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Visitors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialCardPage'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+  /users/{userId}/report:
+    post:
+      tags: [Social]
+      summary: Report a user
+      operationId: reportUser
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '201':
+          description: Report queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+  /users/{userId}/block:
+    post:
+      tags: [Social]
+      summary: Block or hide a user
+      operationId: blockUser
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: Blocked
+  /conversations:
+    get:
+      tags: [Messenger]
+      summary: Conversation list
+      operationId: listConversations
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Conversations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationPage'
+  /conversations/{conversationId}/messages:
+    get:
+      tags: [Messenger]
+      summary: Messages in a conversation
+      operationId: listMessages
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ConversationId'
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePage'
+    post:
+      tags: [Messenger]
+      summary: Send a message (Premium)
+      operationId: sendMessage
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ConversationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+      responses:
+        '201':
+          description: Message created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+  /conversations/{conversationId}/read:
+    post:
+      tags: [Messenger]
+      summary: Mark conversation read
+      operationId: markConversationRead
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ConversationId'
+      responses:
+        '204':
+          description: Marked read
+  /conversations/{conversationId}:
+    delete:
+      tags: [Messenger]
+      summary: Delete conversation
+      operationId: deleteConversation
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ConversationId'
+      responses:
+        '204':
+          description: Deleted
+  /messages/{messageId}:
+    delete:
+      tags: [Messenger]
+      summary: Delete a message
+      operationId: deleteMessage
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: messageId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+  /billing/plans:
+    get:
+      tags: [Billing]
+      summary: List Premium plans
+      operationId: listPlans
+      responses:
+        '200':
+          description: Plans
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Plan'
+  /billing/checkout:
+    post:
+      tags: [Billing]
+      summary: Start checkout for a plan
+      operationId: createCheckout
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [planId]
+              properties:
+                planId: { type: string }
+                successUrl: { type: string, format: uri }
+                cancelUrl: { type: string, format: uri }
+      responses:
+        '200':
+          description: Checkout session
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [checkoutUrl]
+                properties:
+                  checkoutUrl: { type: string, format: uri }
+  /billing/portal:
+    post:
+      tags: [Billing]
+      summary: Customer portal for plan/payment management
+      operationId: createBillingPortal
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                returnUrl: { type: string, format: uri }
+      responses:
+        '200':
+          description: Portal URL
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [portalUrl]
+                properties:
+                  portalUrl: { type: string, format: uri }
+  /billing/webhooks/{provider}:
+    post:
+      tags: [Billing]
+      summary: Payment provider webhook
+      operationId: billingWebhook
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          schema: { type: string, enum: [stripe, mollie] }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200':
+          description: Processed (idempotent)
+  /me/entitlements:
+    get:
+      tags: [Billing]
+      summary: Feature entitlements for current user
+      operationId: getEntitlements
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Entitlements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entitlements'
+  /me/export:
+    post:
+      tags: [GDPR]
+      summary: Request data export
+      operationId: requestExport
+      security:
+        - bearerAuth: []
+      responses:
+        '202':
+          description: Export job started
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [jobId, status]
+                properties:
+                  jobId: { type: string, format: uuid }
+                  status: { type: string, enum: [pending] }
+  /me:
+    delete:
+      tags: [GDPR]
+      summary: Delete account (GDPR)
+      operationId: deleteAccount
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [confirm]
+              properties:
+                confirm: { type: string, enum: [DELETE] }
+      responses:
+        '202':
+          description: Deletion scheduled
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /admin/reports:
+    get:
+      tags: [Admin]
+      summary: Moderation reports queue
+      operationId: adminListReports
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - name: status
+          in: query
+          schema: { type: string, enum: [open, resolved] }
+      responses:
+        '200':
+          description: Reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminReportPage'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /admin/photos/queue:
+    get:
+      tags: [Admin]
+      summary: Photo moderation queue
+      operationId: adminPhotoQueue
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Pending photos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminPhotoPage'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /admin/photos/{photoId}/moderate:
+    post:
+      tags: [Admin]
+      summary: Approve or reject a photo
+      operationId: adminModeratePhoto
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PhotoId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [decision]
+              properties:
+                decision: { type: string, enum: [approve, reject] }
+                reason: { type: string }
+      responses:
+        '200':
+          description: Moderated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /admin/users/{userId}/ban:
+    post:
+      tags: [Admin]
+      summary: Ban a user
+      operationId: adminBanUser
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason: { type: string }
+      responses:
+        '204':
+          description: Banned
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    AcceptLanguage:
+      name: Accept-Language
+      in: header
+      schema: { type: string, enum: [nl, fr, en], default: nl }
+    Cursor:
+      name: cursor
+      in: query
+      schema: { type: string }
+    UserId:
+      name: userId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    PhotoId:
+      name: photoId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    ConversationId:
+      name: conversationId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  responses:
+    BadRequest:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid auth
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient role
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    PaymentRequired:
+      description: Premium entitlement required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }
+        details:
+          type: object
+          additionalProperties: true
+    RegisterRequest:
+      type: object
+      required: [email, password, gender, genderSought, dateOfBirth, locale, consents]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string, format: password, minLength: 8 }
+        gender: { type: string, enum: [woman, man, other] }
+        genderSought: { type: string, enum: [women, men, everyone] }
+        dateOfBirth: { type: string, format: date }
+        locale: { type: string, enum: [nl, fr, en] }
+        consents:
+          type: object
+          required: [terms, privacy]
+          properties:
+            terms: { type: boolean }
+            privacy: { type: boolean }
+            marketing: { type: boolean, default: false }
+    AuthSession:
+      type: object
+      required: [accessToken, tokenType, expiresIn, user]
+      properties:
+        accessToken: { type: string }
+        tokenType: { type: string, enum: [Bearer] }
+        expiresIn: { type: integer }
+        refreshToken: { type: string }
+        user:
+          $ref: '#/components/schemas/Me'
+    Me:
+      type: object
+      required: [id, email, emailVerified, locale, onboarding, premium, entitlements]
+      properties:
+        id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        emailVerified: { type: boolean }
+        locale: { type: string, enum: [nl, fr, en] }
+        firstName: { type: string }
+        onboarding:
+          type: object
+          required: [quizComplete, profileComplete, searchCriteriaComplete, readyForSuggestions]
+          properties:
+            quizComplete: { type: boolean }
+            profileComplete: { type: boolean }
+            searchCriteriaComplete: { type: boolean }
+            readyForSuggestions: { type: boolean }
+            profileCompletenessPercent: { type: integer, minimum: 0, maximum: 100 }
+        premium:
+          type: object
+          required: [active]
+          properties:
+            active: { type: boolean }
+            planId: { type: string }
+            renewsAt: { type: string, format: date-time }
+        entitlements:
+          $ref: '#/components/schemas/Entitlements'
+    Entitlements:
+      type: object
+      required: [clearPhotos, messaging, likesVisitors, radiusSearch, continuousSuggestions]
+      properties:
+        clearPhotos: { type: boolean }
+        messaging: { type: boolean }
+        likesVisitors: { type: boolean }
+        radiusSearch: { type: boolean }
+        continuousSuggestions: { type: boolean }
+    QuizDefinition:
+      type: object
+      required: [version, itemCount, items]
+      properties:
+        version: { type: string }
+        itemCount: { type: integer, minimum: 30, maximum: 50 }
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuizItem'
+    QuizItem:
+      type: object
+      required: [id, prompt, answers]
+      properties:
+        id: { type: string }
+        prompt: { type: string }
+        answers:
+          type: array
+          items:
+            type: object
+            required: [id, label]
+            properties:
+              id: { type: string }
+              label: { type: string }
+    QuizAnswersUpsert:
+      type: object
+      required: [quizVersion, answers]
+      properties:
+        quizVersion: { type: string }
+        answers:
+          type: array
+          items:
+            type: object
+            required: [itemId, answerId]
+            properties:
+              itemId: { type: string }
+              answerId: { type: string }
+    QuizProgress:
+      type: object
+      required: [quizVersion, answeredCount, totalCount, status]
+      properties:
+        quizVersion: { type: string }
+        answeredCount: { type: integer }
+        totalCount: { type: integer }
+        status: { type: string, enum: [in_progress, submitted, scored] }
+    Profile:
+      type: object
+      required: [userId, facts, interests, photos]
+      properties:
+        userId: { type: string, format: uuid }
+        firstName: { type: string }
+        quote: { type: string }
+        aboutMe: { type: string }
+        facts:
+          $ref: '#/components/schemas/ProfileFacts'
+        interests:
+          type: array
+          items: { type: string }
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+        visibility:
+          type: object
+          properties:
+            profileVisible: { type: boolean }
+            showLastActive: { type: boolean }
+            showOnlineNow: { type: boolean }
+            visitorListEnabled: { type: boolean }
+    ProfilePatch:
+      type: object
+      properties:
+        firstName: { type: string }
+        quote: { type: string }
+        aboutMe: { type: string }
+        facts:
+          $ref: '#/components/schemas/ProfileFacts'
+        interests:
+          type: array
+          items: { type: string }
+        visibility:
+          type: object
+          properties:
+            profileVisible: { type: boolean }
+            showLastActive: { type: boolean }
+            showOnlineNow: { type: boolean }
+            visitorListEnabled: { type: boolean }
+    ProfileFacts:
+      type: object
+      properties:
+        region: { type: string }
+        postcodeMasked: { type: string, description: "e.g. 87***" }
+        job: { type: string }
+        heightCm: { type: integer }
+        education: { type: string }
+        languages:
+          type: array
+          items: { type: string }
+        smoker: { type: string, enum: [no, yes, sometimes] }
+        pets: { type: string }
+        maritalStatus: { type: string }
+        children: { type: string }
+        wishForChildren: { type: string }
+    Photo:
+      type: object
+      required: [id, status, isPrimary, urlBlur]
+      properties:
+        id: { type: string, format: uuid }
+        status: { type: string, enum: [pending, approved, rejected] }
+        isPrimary: { type: boolean }
+        urlBlur: { type: string, format: uri }
+        urlClear:
+          type: string
+          format: uri
+          description: Present for self or Premium viewers only
+    SearchCriteria:
+      type: object
+      required: [ageMin, ageMax]
+      properties:
+        ageMin: { type: integer, minimum: 18, maximum: 89 }
+        ageMax: { type: integer, minimum: 18, maximum: 89 }
+        heightMinCm: { type: integer }
+        heightMaxCm: { type: integer }
+        area:
+          type: object
+          properties:
+            countries:
+              type: array
+              items: { type: string }
+            provinces:
+              type: array
+              items: { type: string }
+            postcode: { type: string }
+            radiusKm: { type: integer, description: "Applied at match time only if entitlements.radiusSearch" }
+        children: { type: string }
+        wishForChildren: { type: string }
+        smoker: { type: string }
+        education: { type: string }
+    SuggestionPage:
+      type: object
+      required: [items, freemium]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuggestionCard'
+        nextCursor: { type: string }
+        freemium:
+          type: object
+          required: [dailyCap, remainingToday]
+          properties:
+            dailyCap: { type: integer }
+            remainingToday: { type: integer }
+    SuggestionCard:
+      type: object
+      required: [userId, firstName, age, score, photo]
+      properties:
+        userId: { type: string, format: uuid }
+        firstName: { type: string }
+        age: { type: integer }
+        job: { type: string }
+        distanceBand: { type: string, example: "<20 km" }
+        lastLoginAt: { type: string, format: date-time }
+        score: { type: number }
+        matchVerdict: { type: string }
+        matchBlurb: { type: string }
+        photo:
+          $ref: '#/components/schemas/Photo'
+    LikeResult:
+      type: object
+      required: [userId, action, mutual]
+      properties:
+        userId: { type: string, format: uuid }
+        action: { type: string, enum: [like] }
+        mutual: { type: boolean }
+        matchId:
+          type: string
+          format: uuid
+        conversationId:
+          type: string
+          format: uuid
+    MatchPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Match'
+        nextCursor: { type: string }
+    Match:
+      type: object
+      required: [id, userId, firstName, matchedAt, conversationId]
+      properties:
+        id: { type: string, format: uuid }
+        userId: { type: string, format: uuid }
+        firstName: { type: string }
+        matchedAt: { type: string, format: date-time }
+        conversationId: { type: string, format: uuid }
+        photo:
+          $ref: '#/components/schemas/Photo'
+        score: { type: number }
+    SocialCardPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialCard'
+        nextCursor: { type: string }
+    SocialCard:
+      type: object
+      required: [userId, firstName, age]
+      properties:
+        userId: { type: string, format: uuid }
+        firstName: { type: string }
+        age: { type: integer }
+        job: { type: string }
+        distanceBand: { type: string }
+        region: { type: string }
+        score: { type: number }
+        photo:
+          $ref: '#/components/schemas/Photo'
+        at: { type: string, format: date-time }
+    ReportRequest:
+      type: object
+      required: [reason]
+      properties:
+        reason:
+          type: string
+          enum: [spam, harassment, fake, inappropriate_photos, other]
+        details: { type: string }
+    Report:
+      type: object
+      required: [id, status]
+      properties:
+        id: { type: string, format: uuid }
+        status: { type: string, enum: [open] }
+    ConversationPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conversation'
+        nextCursor: { type: string }
+    Conversation:
+      type: object
+      required: [id, peer, unreadCount]
+      properties:
+        id: { type: string, format: uuid }
+        peer:
+          type: object
+          required: [userId, firstName]
+          properties:
+            userId: { type: string, format: uuid }
+            firstName: { type: string }
+            photo:
+              $ref: '#/components/schemas/Photo'
+            lastLoginAt: { type: string, format: date-time }
+        lastMessagePreview: { type: string }
+        unreadCount: { type: integer }
+        badges:
+          type: array
+          items: { type: string, enum: [new_match, your_turn] }
+    MessagePage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        nextCursor: { type: string }
+    Message:
+      type: object
+      required: [id, conversationId, senderId, type, createdAt]
+      properties:
+        id: { type: string, format: uuid }
+        conversationId: { type: string, format: uuid }
+        senderId: { type: string, format: uuid }
+        type: { type: string, enum: [text, system] }
+        body: { type: string }
+        createdAt: { type: string, format: date-time }
+        readAt: { type: string, format: date-time }
+    SendMessageRequest:
+      type: object
+      required: [body]
+      properties:
+        body: { type: string, minLength: 1, maxLength: 4000 }
+        replyToMessageId: { type: string, format: uuid }
+    Plan:
+      type: object
+      required: [id, name, durationMonths, currency, amountCents]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        durationMonths: { type: integer, enum: [1, 3, 12] }
+        currency: { type: string, example: EUR }
+        amountCents: { type: integer }
+    AdminReportPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, reportedUserId, reporterUserId, reason, status, createdAt]
+            properties:
+              id: { type: string, format: uuid }
+              reportedUserId: { type: string, format: uuid }
+              reporterUserId: { type: string, format: uuid }
+              reason: { type: string }
+              details: { type: string }
+              status: { type: string, enum: [open, resolved] }
+              createdAt: { type: string, format: date-time }
+        nextCursor: { type: string }
+    AdminPhotoPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+        nextCursor: { type: string }
